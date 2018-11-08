@@ -5,9 +5,9 @@ import Game.Runner;
 public class TerroristRoom extends Room
 {
 
-    public TerroristRoom(int x, int y)
+    public TerroristRoom(int a, int b)
     {
-        super(x, y);
+        super(a, b);
     }
 
     /**
@@ -20,6 +20,7 @@ public class TerroristRoom extends Room
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
-        System.out.println("You found the HostageRoom! Now go to the Secret Entrance");
+        System.out.println("You have encountered terrorist,");
+
     }
 }

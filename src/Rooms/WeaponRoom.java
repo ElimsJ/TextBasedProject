@@ -1,13 +1,14 @@
 package Rooms;
 import People.*;
+import java.util.Random;
 import Game.Runner;
 
 public class WeaponRoom extends Room
 {
 
-    public WeaponRoom(int x, int y)
+    public WeaponRoom(int w, int n)
     {
-        super(x, y);
+        super(w, n);
     }
 
     /**
@@ -20,6 +21,6 @@ public class WeaponRoom extends Room
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
-        System.out.println("You found the HostageRoom! Now go to the Secret Entrance");
+        System.out.println("You found the Weapon Room! You acquired an");
     }
 }

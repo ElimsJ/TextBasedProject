@@ -3,14 +3,21 @@ package Game;
 import People.Person;
 import Rooms.*;
 import java.util.Scanner;
+import java.util.Random;
+import Board.RescueMap;
 
-public class Runner {
+public class Runner extends RescueMap
+{
     private static boolean gameOn = true;
 
     public static void main(String[] args)
     {
         Room[][] building = new Room[5][5];
         int hostage = 0;
+        Random r = new Random ();
+        int weapons = 0;
+        String[] items = {""};
+        String[] weaponList = {"AK-12","M4A1","SCAR-LI"};
         //Fill the building with normal rooms
         for (int x = 0; x<building.length; x++)
         {
@@ -26,27 +33,30 @@ public class Runner {
 
         int a = (int)(Math.random()*building.length);
         int b = (int)(Math.random()*building.length);
-        building[x][y] = new TerroristRoom(a, b);
+        building[a][b] = new TerroristRoom(a, b);
 
         int w = (int)(Math.random()*building.length);
         int n = (int)(Math.random()*building.length);
-        building[x][y] = new WeaponRoom(w, n);
+        building[w][n] = new WeaponRoom(w, n);
 
         int e = (int)(Math.random()*building.length);
         int z = (int)(Math.random()*building.length);
-        building[x][y] = new SecretEscapeRoute(e, z)
+        building[e][z] = new SecretEscapeRoute(e, z)
         {
             @Override
             public void enterRoom(Person x) {
                 super.enterRoom(x);
             }
         };
-        System.out.println(x + "," + y);
-        System.out.println(e + "," + z);
+        System.out.println("hostageRoom "+x + "," + y);
+        System.out.println("escapeRoute "+e + "," + z);
+        System.out.println("terroristRoom "+a + "," + b);
+        System.out.println("weaponRoom "+w + "," + n);
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
         building[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
+
         while(gameOn)
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
@@ -55,16 +65,40 @@ public class Runner {
             {
                 if(player1.getyLoc() == y)
                 {
-                    hostage++;
+                    hostage = 1;
                 }
             }
-            if(hostage == 1)
-            {
                 if(player1.getxLoc()== e)
                 {
                     if(player1.getyLoc() == z)
                     {
-                        System.out.println("Mission Complete");
+                        if(hostage>0)
+                        {
+                            System.out.println("Mission Complete");
+                            gameOff();
+                        }
+                    }
+                }
+            if(player1.getxLoc()== w)
+            {
+                if(player1.getyLoc()==n)
+                {
+                    weapons++;
+                    items[0] += weaponList[r.nextInt(weaponList.length)];
+                }
+            }
+            if(player1.getxLoc()==a)
+            {
+                if (player1.getyLoc()== b)
+                {
+                    if (weapons == 0)
+                    {
+                        System.out.println("you have been killed by the terrorist");
+                        gameOff();
+                    }
+                    else
+                    {
+                        System.out.println("you have defeated the terrorist");
                     }
                 }
             }

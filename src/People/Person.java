@@ -3,7 +3,7 @@ import Game.Runner;
 /**
  * Person represents the player as they move through the game.
  */
-public class Person{
+public class Person {
     String firstName;
     String familyName;
     int xLoc, yLoc;
