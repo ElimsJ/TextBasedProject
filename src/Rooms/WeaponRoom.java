@@ -11,10 +11,6 @@ public class WeaponRoom extends Room
         super(w, n);
     }
 
-    /**
-     * Triggers the game ending conditions.
-     * @param x the Person entering
-     */
     @Override
     public void enterRoom(Person x)
     {

@@ -10,10 +10,6 @@ public class TerroristRoom extends Room
         super(a, b);
     }
 
-    /**
-     * Triggers the game ending conditions.
-     * @param x the Person entering
-     */
     @Override
     public void enterRoom(Person x)
     {

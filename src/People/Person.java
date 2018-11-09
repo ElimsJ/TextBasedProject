@@ -1,9 +1,7 @@
 package People;
 import Game.Runner;
-/**
- * Person represents the player as they move through the game.
- */
-public class Person {
+
+public class Person implements Loc{
     String firstName;
     String familyName;
     int xLoc, yLoc;
@@ -34,4 +32,8 @@ public class Person {
         this.xLoc = xLoc;
         this.yLoc = yLoc;
     }
+}
+interface Loc{
+    int getxLoc();
+    int getyLoc();
 }

@@ -8,10 +8,6 @@ public class SecretEscapeRoute extends Room
         super(e, z);
     }
 
-    /**
-     * Triggers the game ending conditions.
-     * @param x the Person entering
-     */
     @Override
     public void enterRoom(Person x)
     {

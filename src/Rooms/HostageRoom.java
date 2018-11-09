@@ -9,10 +9,6 @@ public class HostageRoom extends Room
         super(x, y);
     }
 
-    /**
-     * Triggers the game ending conditions.
-     * @param x the Person entering
-     */
     @Override
     public void enterRoom(Person x)
     {
